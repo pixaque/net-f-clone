@@ -7,16 +7,32 @@ import useInfoModalStore from '@/hooks/useInfoModalStore';
 
 const Billboard: React.FC = () => {
   const { openModal } = useInfoModalStore();
-  const { data } = useBillboard();
+  const { data, error, isLoading } = useBillboard();
 
+  
   const handleOpenModal = useCallback(() => {
     openModal(data?.id);
+    console.log(isLoading);
+
   }, [openModal, data?.id]);
 
-
-
   return (
+    
     <div className="relative h-[56.25vw]">
+      <>
+      {isLoading ? 
+      
+      <div className="absolute w-full text-center top-[30%] h-full">
+        <div className="loadingspinner">
+          <div id="square1"></div>
+          <div id="square2"></div>
+          <div id="square3"></div>
+          <div id="square4"></div>
+          <div id="square5"></div>
+        </div>
+      </div>
+      : 
+      <>
       <video poster={data?.thumbnailUrl} className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500" autoPlay muted loop src={data?.videoUrl}></video>
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
         <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
@@ -51,7 +67,11 @@ const Billboard: React.FC = () => {
           </button>
         </div>
       </div>
+      </>
+      }
+      </>
     </div>
+    
   )
 }
 export default Billboard;
