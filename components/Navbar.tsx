@@ -13,6 +13,7 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,11 +46,11 @@ const Navbar = () => {
         <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" linkPage="/" />
-          <NavbarItem label="Series" linkPage="/" />
-          <NavbarItem label="Films" linkPage="/" />
+          <NavbarItem label="Series" linkPage="/series" />
+          <NavbarItem label="Films" linkPage="/films" />
           <NavbarItem label="New & Popular" linkPage="/newpopular" />
           <NavbarItem  label="My List" linkPage="/my_list" />
-          <NavbarItem label="Browse by Languages" linkPage="/" />
+          <NavbarItem label="Browse by Languages" linkPage="/languages" />
         </div>
         <div onClick={toggleMobileMenu} className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative">
           <p className="text-white text-sm">Browse</p>

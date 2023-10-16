@@ -19,6 +19,8 @@ interface UserCardProps {
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
 
+  console.log("SESSION: ", session)
+
   if (!session) {
     return {
       redirect: {

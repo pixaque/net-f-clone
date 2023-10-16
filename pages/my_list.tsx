@@ -4,6 +4,28 @@ import MovieList from '@/components/MovieList';
 import InfoModal from '@/components/InfoModal';
 import useFavorites from '@/hooks/useFavorites';
 import useInfoModalStore from '@/hooks/useInfoModalStore';
+import { NextPageContext } from 'next';
+import { getSession, signIn } from 'next-auth/react';
+
+export async function getServerSideProps(context: NextPageContext) {
+  
+  const session = await getSession(context);
+
+  console.log(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}
 
 const MyList = () => {
     const { data: favorites = [] } = useFavorites();
